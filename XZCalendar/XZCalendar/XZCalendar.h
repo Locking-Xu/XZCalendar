@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface XZCalendar : UIView
+#import "XZCalendarTitleView.h"
+#import "XZCalendarDateView.h"
+@interface XZCalendar : UIView<XZCalendarTitleViewDelegate,XZCalendarDateViewDelegate>
 
 @end

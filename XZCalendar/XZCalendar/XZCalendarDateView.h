@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol  XZCalendarDateViewDelegate<NSObject>
+
+- (void)calendarChangeTitle:(NSDate *)date;
+
+@end
+
 @interface XZCalendarDateView : UIView<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
+@property(nonatomic, weak) id<XZCalendarDateViewDelegate>delegate;
+
+- (void)reloadCalendar:(NSDate *)date;
 @end

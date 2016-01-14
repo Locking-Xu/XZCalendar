@@ -7,8 +7,7 @@
 //
 
 #import "XZCalendar.h"
-#import "XZCalendarTitleView.h"
-#import "XZCalendarDateView.h"
+
 #import "Masonry.h"
 
 @implementation XZCalendar{
@@ -16,6 +15,7 @@
     __weak XZCalendar *_weakSelf;
     
     XZCalendarTitleView *_titleView;
+    XZCalendarDateView *_dateView;
 }
 
 - (id)initWithFrame:(CGRect)frame{
@@ -49,16 +49,18 @@
         }];
         view;
     });
+    
+    _titleView.delegate = self;
 }
 
 - (void)addDateView{
     
-    XZCalendarDateView *dateView = ({
+    _dateView = ({
         
         XZCalendarDateView *view = [[XZCalendarDateView alloc] init];
         view.backgroundColor = [UIColor purpleColor];
         [self addSubview:view];
-        
+
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
            
             make.left.equalTo(_weakSelf);
@@ -69,7 +71,19 @@
         
         view;
     });
+    _dateView.delegate = self;
 }
 
+#pragma mark - XZCalendarTitleViewDelegate
+- (void)calendarChangeYearOrMonth:(NSDate *)date{
+    
+    [_dateView reloadCalendar:date];
+}
 
+#pragma mark - XZCalendarDateViewDelegate
+- (void)calendarChangeTitle:(NSDate *)date{
+    
+    [_titleView reloadTitle:date];
+    
+}
 @end

@@ -34,14 +34,43 @@
         
         _dayLabel.textColor = [UIColor whiteColor];
         
+        _dayLabel.textAlignment = NSTextAlignmentCenter;
+        
         [self addSubview:_dayLabel];
         
         [_dayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
            
-            make.center.equalTo(weakSelf);
+            make.top.equalTo(weakSelf);
+            make.left.equalTo(weakSelf);
+            make.right.equalTo(weakSelf);
+            make.height.equalTo(weakSelf.mas_height).multipliedBy(0.5f);
         }];
     }
     
     return _dayLabel;
+}
+
+- (UILabel *)chineseDayLabel{
+
+    __weak XZCalendarCell *weakSelf = self;
+    
+    if (!_chineseDayLabel) {
+        
+        _chineseDayLabel = [UILabel new];
+        
+        _chineseDayLabel.textAlignment = NSTextAlignmentCenter;
+        _chineseDayLabel.textColor = [UIColor whiteColor];
+        
+        [self addSubview:_chineseDayLabel];
+        
+        [_chineseDayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.bottom.equalTo(weakSelf);
+            make.left.equalTo(weakSelf);
+            make.right.equalTo(weakSelf);
+            make.height.equalTo(weakSelf.mas_height).multipliedBy(0.5f);
+        }];
+    }
+    return _chineseDayLabel;
 }
 @end

@@ -197,6 +197,11 @@
     });
 }
 
+- (void)reloadTitle:(NSDate *)date{
+    
+    _yearMonthLab.text = [NSDate stringFromDate:date format:@"yyyy年MM月"];
+}
+
 #pragma mark - UIButton_Action
 - (void)leftBtn_Pressed{
 
@@ -210,6 +215,11 @@
     date = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:date options:0];
     
     _yearMonthLab.text = [NSDate stringFromDate:date format:@"yyyy年MM月"];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(calendarChangeYearOrMonth:)]) {
+        
+        [self.delegate calendarChangeYearOrMonth:date];
+    }
 }
 
 - (void)rightBtn_Pressed{
@@ -223,6 +233,11 @@
     date = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:date options:0];
     
     _yearMonthLab.text = [NSDate stringFromDate:date format:@"yyyy年MM月"];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(calendarChangeYearOrMonth:)]) {
+        
+        [self.delegate calendarChangeYearOrMonth:date];
+    }
 }
 
 
